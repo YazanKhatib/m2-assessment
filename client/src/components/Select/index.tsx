@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect, useRef } from "react";
 
 export interface DropdownProps {
   defaultValue?: string;
@@ -13,9 +13,9 @@ export const Dropdown: React.FC<DropdownProps> = ({
   onChange,
   classNames,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [option, setOption] = React.useState(defaultValue);
-  const dropdownRef = React.useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [option, setOption] = useState(defaultValue);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
     setIsOpen((prevIsOpen) => !prevIsOpen);
@@ -27,7 +27,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
     onChange(value);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current?.contains(event.target as Node)) {
         setIsOpen(false);

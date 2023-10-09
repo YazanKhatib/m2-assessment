@@ -1,9 +1,7 @@
-import React from "react";
+import { FC, useState, useEffect } from "react";
 import axios from "axios";
 import { Modal, Dropdown } from "./components";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/outline";
 
 interface IMagazine {
@@ -16,11 +14,11 @@ interface IMagazine {
   type?: string;
 }
 
-const App: React.FC = () => {
-  const [data, setData] = React.useState<IMagazine[]>([]);
-  const [open, setOpen] = React.useState(false);
-  const [content, setContent] = React.useState<IMagazine>();
-  const [subscriptionFilter, setSubscriptionFilter] = React.useState("all");
+const App: FC = () => {
+  const [data, setData] = useState<IMagazine[]>([]);
+  const [open, setOpen] = useState(false);
+  const [content, setContent] = useState<IMagazine>();
+  const [subscriptionFilter, setSubscriptionFilter] = useState("all");
 
   const getMagazines = async () => {
     const { data: result } = await axios.get("http://localhost:3000/magazine");
@@ -28,7 +26,7 @@ const App: React.FC = () => {
     setData(result);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     getMagazines();
   }, []);
 

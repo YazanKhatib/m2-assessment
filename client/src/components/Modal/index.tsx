@@ -6,6 +6,7 @@ interface ModalProps {
   children: React.ReactElement;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 export const Modal: React.FC<ModalProps> = ({ open, setOpen, children }) => {
   return (
     <Transition.Root show={open} as={Fragment}>
